@@ -1,6 +1,6 @@
 # Supplementary Code
 
-**The Cliff Edge — Why Vision Token Reduction Fails Catastrophically in VLA Closed-Loop Control**
+**Why Token Pruning Crashes Some Robot Policies but Not Others: Vision Connectors and VLA Token Compressibility**
 
 Submitted to CoRL 2026.
 
@@ -8,7 +8,7 @@ Submitted to CoRL 2026.
 
 ```
 .
-├── imm/                    # Core importance margin module
+├── imm/                    # Importance margin module (exploratory; not used in main results)
 │   ├── __init__.py
 │   ├── acis.py             # Attention-Conditioned Importance Scoring
 │   ├── losses.py           # Training losses (importance margin loss, distillation)
@@ -79,7 +79,7 @@ python eval_official_libero.py --keep_ratio 0.5 --suite libero_object
 python eval_openvla_l2norm_libero.py --keep_ratio 0.5 --suite libero_object
 
 # π0.5 on LIBERO
-python eval_pi05_pruning_libero.py --method l2norm --keep_ratio 0.5 --suite libero_10
+python eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.5 --suite libero_10
 ```
 
 ### 2. Learned Compression (Table 3)
