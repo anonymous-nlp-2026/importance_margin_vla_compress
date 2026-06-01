@@ -1,0 +1,16 @@
+# v8: gradient isolation (dual detach) — margin_loss does not backprop to backbone,
+# action_loss does not backprop to ACIS.
+
+_base_: imm_anchor.yaml
+
+imm:
+  gradient_isolation: true
+  lambda_margin: 0.5
+  delta: 0.3
+
+training:
+  output_dir: "checkpoints/imm_anchor_v8"
+  total_steps: 30000
+  grad_clip: 10.0
+  save_every: 2000
+  eval_every: 999999

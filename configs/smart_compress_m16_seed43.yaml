@@ -1,0 +1,7 @@
+_base_: smart_compress.yaml
+
+compressor:
+  num_queries: 16      # M = 16 (87.5% compression)
+
+training:
+  output_dir: "checkpoints/smart_compress_m16_seed43"

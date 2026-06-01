@@ -1,0 +1,7 @@
+# LIBERO LoRA baseline seed=0
+
+_base_: libero_baseline.yaml
+
+training:
+  output_dir: "checkpoints/libero_baseline_seed0"
+  seed: 0

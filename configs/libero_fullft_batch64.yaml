@@ -1,0 +1,11 @@
+# Full expert FT with effective batch=64 via gradient accumulation
+# batch_size=4 × gradient_accumulation_steps=16 = effective 64
+
+_base_: libero_full_ft.yaml
+
+training:
+  gradient_accumulation_steps: 16
+  output_dir: "checkpoints/libero_fullft_batch64"
+  save_every: 2000
+  num_workers: 2
+  pin_memory: false

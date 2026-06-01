@@ -1,0 +1,50 @@
+# ACIS Stage1-only: k=0.7 (retain 70% visual tokens)
+# Freeze expert, train ACIS selector only, 10K steps.
+# Purpose: SR vs compression ratio curve point (k=0.7)
+
+_base_: libero_baseline.yaml
+
+model:
+  train_expert_only: true
+  lora:
+    rank: 0
+
+imm:
+  enabled: true
+  gradient_isolation: false
+  lambda_margin: 1.0
+  delta: 0.3
+  k_ratio: 0.7
+  temperature: 0.5
+  soft_topk_method: "sigmoid"
+  warmup_steps: 0
+
+acis:
+  visual_dim: 960
+  action_dim: 720
+  num_heads: 8
+  dropout: 0.0
+
+twostage:
+  train_mode: "twostage_fullft"
+  baseline_checkpoint: "checkpoints/libero_full_ft/step_099999/checkpoint.pt"
+  stage1_steps: 10000
+  stage2_steps: 0
+  stage1_lr: 3.0e-4
+  stage2_lr: 1.0e-4
+  stage1_warmup_steps: 500
+  stage2_warmup_steps: 0
+  checkpoint_after_stage1: true
+  stage1_freeze_backbone: true
+  stage1_train_acis: true
+  stage2_freeze_acis: true
+  stage2_train_expert_only: true
+
+training:
+  output_dir: "checkpoints/libero_acis_stage1only_k07"
+  total_steps: 10000
+  grad_clip: 10.0
+  save_every: 5000
+  eval_every: 999999
+  log_every: 50
+  batch_size: 4

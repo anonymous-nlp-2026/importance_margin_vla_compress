@@ -1,0 +1,15 @@
+# v8.2: extended training (30K→50K steps) contingency
+
+_base_: imm_anchor.yaml
+
+imm:
+  gradient_isolation: true
+  lambda_margin: 0.5
+  delta: 0.3
+
+training:
+  output_dir: "checkpoints/imm_anchor_v8_2"
+  total_steps: 50000
+  grad_clip: 10.0
+  save_every: 2000
+  eval_every: 999999

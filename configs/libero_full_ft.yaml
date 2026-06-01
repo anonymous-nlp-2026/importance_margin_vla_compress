@@ -1,0 +1,12 @@
+# LIBERO Full Expert FT: freeze VLM+vision, full train action expert (no LoRA)
+
+_base_: libero_baseline.yaml
+
+model:
+  train_expert_only: true
+  lora:
+    rank: 0
+
+training:
+  output_dir: "checkpoints/libero_full_ft"
+  save_every: 10000

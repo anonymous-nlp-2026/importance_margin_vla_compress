@@ -1,0 +1,15 @@
+# v8.1: reduced lambda (0.5→0.2) contingency if G3 in gray zone
+
+_base_: imm_anchor.yaml
+
+imm:
+  gradient_isolation: true
+  lambda_margin: 0.2
+  delta: 0.3
+
+training:
+  output_dir: "checkpoints/imm_anchor_v8_1"
+  total_steps: 30000
+  grad_clip: 10.0
+  save_every: 2000
+  eval_every: 999999

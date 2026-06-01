@@ -1,0 +1,31 @@
+# v8b: Two-stage training — complete gradient isolation via sequential training.
+# Stage 1: Freeze LoRA, train ACIS only (margin_loss). ACIS learns importance on fixed features.
+# Stage 2: Freeze ACIS, train LoRA only (action_loss). LoRA fine-tunes with fixed token selection.
+# Fallback if v8 gradient isolation still shows G3a > 1.10.
+
+_base_: imm_anchor.yaml
+
+imm:
+  gradient_isolation: false  # Not needed — stages are fully separated
+  lambda_margin: 1.0         # Stage 1 uses margin_loss only, no weighting needed
+  delta: 0.3
+  k_ratio: 0.5
+
+twostage:
+  baseline_checkpoint: "checkpoints/baseline/step_029999/checkpoint.pt"
+  stage1_steps: 10000        # Train ACIS on frozen backbone features
+  stage2_steps: 20000        # Fine-tune LoRA with frozen importance scores
+  stage1_lr: 3.0e-4          # Higher LR for small ACIS module
+  stage2_lr: 1.0e-4          # Standard LoRA LR
+  stage1_warmup_steps: 500
+  stage2_warmup_steps: 1000
+  checkpoint_after_stage1: true  # Save checkpoint between stages
+
+training:
+  output_dir: "checkpoints/imm_anchor_v8b_twostage"
+  total_steps: 30000          # stage1 + stage2
+  grad_clip: 10.0
+  save_every: 2000
+  eval_every: 999999
+  log_every: 50
+  batch_size: 4

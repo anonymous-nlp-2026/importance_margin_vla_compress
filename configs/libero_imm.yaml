@@ -1,0 +1,25 @@
+# LIBERO + IMM: SmolVLA with ACIS token compression on LIBERO.
+# L_total = L_action + lambda * L_margin
+
+_base_: libero_baseline.yaml
+
+imm:
+  enabled: true
+  delta: 0.3
+  lambda_margin: 0.5
+  warmup_steps: 10000      # 10% of 100K steps
+  temperature: 0.5
+  soft_topk_method: "sigmoid"
+  k_ratio: 0.5
+  gradient_isolation: true
+
+acis:
+  visual_dim: 960
+  action_dim: 720
+  num_heads: 8
+  dropout: 0.0
+
+training:
+  output_dir: "checkpoints/libero_imm"
+  save_every: 5000
+  eval_every: 999999

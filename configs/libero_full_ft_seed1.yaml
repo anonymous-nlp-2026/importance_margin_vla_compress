@@ -1,0 +1,13 @@
+# LIBERO Full FT baseline seed=1
+
+_base_: libero_baseline.yaml
+
+model:
+  train_expert_only: true
+  lora:
+    rank: 0
+
+training:
+  output_dir: "checkpoints/libero_full_ft_seed1"
+  save_every: 10000
+  seed: 1

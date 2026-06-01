@@ -1,0 +1,7 @@
+_base_: smart_compress.yaml
+
+compressor:
+  num_queries: 128     # M = 128 control (no compression, 128→128)
+
+training:
+  output_dir: "checkpoints/smart_compress_m128"

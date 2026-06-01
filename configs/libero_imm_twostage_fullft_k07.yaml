@@ -1,0 +1,61 @@
+# LIBERO IMM Two-Stage (Full FT): ACIS-first, then Full Expert FT.
+# Based on libero_imm_twostage.yaml but uses full fine-tuning instead of LoRA.
+#
+# Stage 1: Freeze all expert params, train ACIS only (margin_loss).
+#           ACIS learns importance scoring on Full FT-adapted features.
+# Stage 2: Freeze ACIS, full fine-tune expert params (action_loss).
+#           Expert trains with fixed token selection mask (no LoRA).
+#
+# Usage:
+#   python train_twostage.py --config configs/libero_imm_twostage_fullft.yaml
+#   python train_twostage.py --config configs/libero_imm_twostage_fullft.yaml --dry_run
+
+_base_: libero_baseline.yaml
+
+model:
+  train_expert_only: true
+  lora:
+    rank: 0
+
+imm:
+  enabled: true
+  gradient_isolation: false  # Not needed — stages fully separated
+  lambda_margin: 1.0         # Stage 1 margin_loss only, no weighting
+  delta: 0.3                 # Hinge margin threshold (same as aloha v8b)
+  k_ratio: 0.7              # Retain 50% visual tokens
+  temperature: 0.5           # SoftTopK temperature
+  soft_topk_method: "sigmoid"
+  warmup_steps: 0            # No lambda warmup in two-stage mode
+
+acis:
+  visual_dim: 960            # SigLIP connector output dim
+  action_dim: 720            # Expert hidden dim
+  num_heads: 8
+  dropout: 0.0
+
+twostage:
+  train_mode: "twostage_fullft"
+  # Full FT 100K checkpoint (update path when training completes)
+  baseline_checkpoint: "checkpoints/libero_full_ft/step_099999/checkpoint.pt"
+  stage1_steps: 10000        # Train ACIS on frozen expert features
+  stage2_steps: 20000        # Full fine-tune expert with frozen importance scores
+  stage1_lr: 3.0e-4          # Higher LR for small ACIS module
+  stage2_lr: 1.0e-4          # Standard expert FT LR (matches libero_full_ft)
+  stage1_warmup_steps: 500
+  stage2_warmup_steps: 1000
+  checkpoint_after_stage1: true
+  # Stage 1: freeze expert, train ACIS
+  stage1_freeze_backbone: true
+  stage1_train_acis: true
+  # Stage 2: freeze ACIS, full FT expert
+  stage2_freeze_acis: true
+  stage2_train_expert_only: true
+
+training:
+  output_dir: "checkpoints/libero_imm_twostage_fullft_k07"
+  total_steps: 30000         # stage1(10K) + stage2(20K)
+  grad_clip: 10.0
+  save_every: 2000
+  eval_every: 999999         # Skip in-training eval
+  log_every: 50
+  batch_size: 4
