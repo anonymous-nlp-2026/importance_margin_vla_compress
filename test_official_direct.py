@@ -3,7 +3,7 @@ import os, sys, json
 os.environ["MUJOCO_GL"] = "egl"
 
 # Add official repo to path
-sys.path.insert(0, "/root/autodl-tmp/openvla-oft-official")
+sys.path.insert(0, "./openvla-oft-official")
 
 import numpy as np
 import torch
@@ -29,7 +29,7 @@ from transformers import AutoProcessor
 from pathlib import Path
 from dataclasses import dataclass
 
-CKPT = "/root/autodl-tmp/openvla-oft-libero-object"
+CKPT = "./openvla-oft-libero-object"
 DEVICE = "cuda:0"
 
 # Minimal config object that mimics GenerateConfig

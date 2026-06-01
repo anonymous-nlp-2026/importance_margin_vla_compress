@@ -9,25 +9,25 @@ os.environ.setdefault("CUDA_VISIBLE_DEVICES", "0")
 os.environ["TRANSFORMERS_OFFLINE"] = "1"
 os.environ["HF_HUB_OFFLINE"] = "1"
 
-sys.path.insert(0, "/root/autodl-tmp/openvla_deps")
+sys.path.insert(0, "./openvla_deps")
 
 import numpy as np
 import torch
 from PIL import Image
 
-hf_dir = "/root/autodl-tmp/openvla-repo/prismatic/extern/hf"
+hf_dir = "./openvla-repo/prismatic/extern/hf"
 init_path = os.path.join(hf_dir, "__init__.py")
 if not os.path.exists(init_path):
     open(init_path, "w").close()
-sys.path.insert(0, "/root/autodl-tmp/openvla-repo/prismatic/extern")
+sys.path.insert(0, "./openvla-repo/prismatic/extern")
 from hf.configuration_prismatic import OpenVLAConfig
 from hf.modeling_prismatic import OpenVLAForActionPrediction
 from hf.processing_prismatic import PrismaticImageProcessor, PrismaticProcessor
 
 DEVICE = torch.device("cuda:0")
-CHECKPOINT_PATH = "/root/autodl-tmp/openvla-libero-object"
+CHECKPOINT_PATH = "./openvla-libero-object"
 UNNORM_KEY = "libero_object"
-TASK_CLASSIFICATION = "/root/autodl-tmp/LIBERO-plus/libero/libero/benchmark/task_classification.json"
+TASK_CLASSIFICATION = "./LIBERO-plus/libero/libero/benchmark/task_classification.json"
 
 
 def parse_args():
@@ -271,7 +271,7 @@ def main():
         "timestamp": time.strftime("%Y-%m-%d %H:%M:%S"),
     }
 
-    out_dir = "/root/autodl-tmp/importance_margin_vla_compress/eval_results"
+    out_dir = "./eval_results"
     os.makedirs(out_dir, exist_ok=True)
     out_path = args.output or f"{out_dir}/openvla_liberoplus_{args.category.replace(' ', '_').lower()}_L{args.difficulty}_smoke.json"
     with open(out_path, "w") as f:

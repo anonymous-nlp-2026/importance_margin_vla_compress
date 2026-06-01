@@ -1,9 +1,9 @@
 import sys, dataclasses, os
 os.environ["MUJOCO_GL"] = "egl"
-os.environ["HF_HOME"] = "/root/autodl-tmp/.hf_cache"
+os.environ["HF_HOME"] = "./cache"
 os.environ["TRANSFORMERS_OFFLINE"] = "1"
 os.environ["HF_HUB_OFFLINE"] = "1"
-sys.path.insert(0, '/root/autodl-tmp/openpi-repo/src')
+sys.path.insert(0, './openpi-repo/src')
 
 import torch
 import safetensors.torch
@@ -25,7 +25,7 @@ model = PI0Pytorch(config=Pi05Config())
 print(f"Model created. Params: {sum(p.numel() for p in model.parameters()) / 1e6:.1f}M")
 
 print("Loading weights...")
-safetensors.torch.load_model(model, '/root/autodl-tmp/pi05-libero-finetuned/model.safetensors')
+safetensors.torch.load_model(model, './pi05-libero-finetuned/model.safetensors')
 print("Weights loaded successfully")
 
 model = model.to("cuda:0")

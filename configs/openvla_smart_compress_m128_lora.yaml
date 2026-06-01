@@ -4,7 +4,7 @@
 
 model:
   name: openvla
-  pretrained: "/root/autodl-tmp/openvla-libero-object"
+  pretrained: "./openvla-libero-object"
   dtype: "bfloat16"
   use_lora: true
   lora_r: 16

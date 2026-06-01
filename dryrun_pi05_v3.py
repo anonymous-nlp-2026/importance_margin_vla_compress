@@ -5,7 +5,7 @@ from collections import deque
 
 os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 os.environ["MUJOCO_GL"] = "egl"
-os.environ["HF_HOME"] = "/root/autodl-tmp/.hf_cache"
+os.environ["HF_HOME"] = "./cache"
 os.environ["TRANSFORMERS_OFFLINE"] = "1"
 
 import numpy as np
@@ -15,7 +15,7 @@ import torch._dynamo; torch._dynamo.config.disable = True
 logging.basicConfig(level=logging.INFO, force=True, format="%(asctime)s %(message)s")
 log = logging.getLogger(__name__)
 
-CKPT_DIR = "/root/autodl-tmp/pi05-libero-finetuned"
+CKPT_DIR = "./pi05-libero-finetuned"
 DEVICE = "cuda:0"
 SEED = 7
 REPLAN_STEPS = 5

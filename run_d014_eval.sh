@@ -4,8 +4,8 @@
 # baseline mid-checkpoints (50 batches each)
 
 set -e
-source /root/miniconda3/etc/profile.d/conda.sh && conda activate base
-cd /root/autodl-tmp/importance_margin_vla_compress
+# activate your conda environment
+cd .
 
 CKPT_BASE="checkpoints/baseline"
 CKPT_V7="checkpoints/imm_anchor"

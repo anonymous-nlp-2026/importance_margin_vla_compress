@@ -7,7 +7,7 @@ import torch.nn as nn
 from PIL import Image
 from pathlib import Path
 
-CKPT = "/root/autodl-tmp/openvla-oft-libero-object"
+CKPT = "./openvla-oft-libero-object"
 DEVICE = "cuda:0"
 ACTION_DIM = 7
 NUM_ACTIONS_CHUNK = 8

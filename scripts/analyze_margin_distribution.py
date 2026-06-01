@@ -1,7 +1,7 @@
 """Analysis 1: ACIS importance score distribution at v8 step-2K."""
 import sys, os
-sys.path.insert(0, '/root/autodl-tmp/importance_margin_vla_compress')
-os.chdir('/root/autodl-tmp/importance_margin_vla_compress')
+sys.path.insert(0, '.')
+os.chdir('.')
 
 import torch
 import numpy as np

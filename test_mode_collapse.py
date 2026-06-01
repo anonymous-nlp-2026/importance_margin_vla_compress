@@ -10,7 +10,7 @@ Usage:
     python test_mode_collapse.py --checkpoint_path checkpoints/baseline_v6_alpha16/latest/checkpoint.pt \
         --config_path configs/baseline_v6_alpha16.yaml
     python test_mode_collapse.py --checkpoint_path checkpoints/baseline/latest/checkpoint.pt \
-        --config_path configs/baseline.yaml --pretrained_path /root/autodl-tmp/.hf_cache/lerobot/smolvla_base
+        --config_path configs/baseline.yaml --pretrained_path ./cache/lerobot/smolvla_base
 """
 
 from __future__ import annotations

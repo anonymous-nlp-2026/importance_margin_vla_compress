@@ -3,7 +3,7 @@
 
 model:
   name: smolvla
-  pretrained: "/root/autodl-tmp/.hf_cache/lerobot/smolvla_base"
+  pretrained: "./cache/lerobot/smolvla_base"
   lora:
     rank: 32
     alpha: 16

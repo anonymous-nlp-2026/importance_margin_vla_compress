@@ -1,7 +1,7 @@
 _base_: smart_compress.yaml
 
 model:
-  pretrained: "/root/autodl-tmp/.hf_cache/lerobot/smolvla_libero"
+  pretrained: "./cache/lerobot/smolvla_libero"
 
 compressor:
   num_queries: 32      # M = 32 (75% compression)

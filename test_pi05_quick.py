@@ -2,7 +2,7 @@
 import os, sys, types
 os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 os.environ["MUJOCO_GL"] = "egl"
-os.environ["HF_HOME"] = "/root/autodl-tmp/.hf_cache"
+os.environ["HF_HOME"] = "./cache"
 
 import numpy as np
 import torch, math, logging
@@ -14,8 +14,8 @@ from safetensors.torch import load_file
 logging.basicConfig(level=logging.INFO, force=True, format="%(asctime)s %(message)s")
 log = logging.getLogger(__name__)
 
-CKPT_DIR = "/root/autodl-tmp/pi05-libero-finetuned"
-TOKENIZER_PATH = "/root/.cache/huggingface/hub/models--unsloth--gemma-2b/snapshots/7ac9d201a57c8cdc6f939069fc0f044c60197a4a"
+CKPT_DIR = "./pi05-libero-finetuned"
+TOKENIZER_PATH = "./cache/huggingface/hub/models--unsloth--gemma-2b/snapshots/7ac9d201a57c8cdc6f939069fc0f044c60197a4a"
 DEVICE = "cuda:0"
 
 log.info("Loading Pi0.5...")

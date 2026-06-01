@@ -11,7 +11,7 @@ os.environ.setdefault("MUJOCO_GL", "egl")
 os.environ.setdefault("TRANSFORMERS_OFFLINE", "1")
 os.environ.setdefault("HF_HUB_OFFLINE", "1")
 
-PROJECT_DIR = Path("/root/autodl-tmp/importance_margin_vla_compress")
+PROJECT_DIR = Path(".")
 sys.path.insert(0, str(PROJECT_DIR))
 
 import numpy as np
@@ -48,7 +48,7 @@ def test_checkpoint_diversity(policy, tokenizer, device, num_noise_samples=16, n
 def main():
     device = torch.device("cuda:0")
     config_path = str(PROJECT_DIR / "configs" / "baseline.yaml")
-    pretrained_path = "/root/autodl-tmp/.hf_cache/lerobot/smolvla_base"
+    pretrained_path = "./cache/lerobot/smolvla_base"
     num_noise_samples = 16
     num_obs = 5
     

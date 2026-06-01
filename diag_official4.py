@@ -7,8 +7,8 @@ import torch.nn as nn
 from PIL import Image
 from pathlib import Path
 
-CKPT = "/root/autodl-tmp/openvla-oft-libero-object"
-OFT_REPO = "/root/autodl-tmp/openvla-oft-official"
+CKPT = "./openvla-oft-libero-object"
+OFT_REPO = "./openvla-oft-official"
 DEVICE = "cuda:0"
 IMG_SIZE = 224
 CROP_SCALE = 0.9

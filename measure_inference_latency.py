@@ -15,7 +15,7 @@ from pathlib import Path
 
 os.environ.setdefault("TRANSFORMERS_OFFLINE", "1")
 os.environ.setdefault("HF_HUB_OFFLINE", "1")
-os.environ.setdefault("HF_HOME", "/root/autodl-tmp/.hf_cache")
+os.environ.setdefault("HF_HOME", "./cache")
 
 import torch
 import numpy as np

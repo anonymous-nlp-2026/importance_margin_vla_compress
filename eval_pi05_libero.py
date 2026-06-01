@@ -10,7 +10,7 @@ from collections import deque
 
 os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 os.environ["MUJOCO_GL"] = "egl"
-os.environ["HF_HOME"] = "/root/autodl-tmp/.hf_cache"
+os.environ["HF_HOME"] = "./cache"
 
 import numpy as np
 import torch
@@ -21,8 +21,8 @@ logging.basicConfig(level=logging.INFO, force=True, format="%(asctime)s %(messag
 log = logging.getLogger(__name__)
 
 # ─── Config ───
-CKPT_DIR = "/root/autodl-tmp/pi05-libero-finetuned"
-TOKENIZER_PATH = "/root/.cache/huggingface/hub/models--unsloth--gemma-2b/snapshots/7ac9d201a57c8cdc6f939069fc0f044c60197a4a"
+CKPT_DIR = "./pi05-libero-finetuned"
+TOKENIZER_PATH = "./cache/huggingface/hub/models--unsloth--gemma-2b/snapshots/7ac9d201a57c8cdc6f939069fc0f044c60197a4a"
 TASK_SUITE = "libero_object"
 N_EPISODES_PER_TASK = 50
 DEVICE = "cuda:0"
@@ -30,7 +30,7 @@ PRUNE_RATIO = float(sys.argv[1]) if len(sys.argv) > 1 else 0.0
 SEED = 7
 REPLAN_STEPS = 5
 MAX_TOKEN_LEN = 200
-RESULTS_DIR = Path("/root/autodl-tmp/importance_margin_vla_compress/eval_results")
+RESULTS_DIR = Path("./eval_results")
 
 # ─── Load model ───
 log.info(f"Loading Pi0.5 from {CKPT_DIR} ...")

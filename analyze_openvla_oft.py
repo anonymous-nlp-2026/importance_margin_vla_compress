@@ -6,7 +6,7 @@ Runs on REAL LIBERO-Object observations. Measures:
   B) Attention entropy per layer (text→vision attention distribution)
 
 Usage:
-    source /root/miniconda3/etc/profile.d/conda.sh && conda activate base
+    # activate your conda environment
     CUDA_VISIBLE_DEVICES=0 python analyze_openvla_oft.py
 """
 
@@ -17,7 +17,7 @@ import os
 import sys
 import time
 
-os.environ.setdefault("HF_HOME", "/root/autodl-tmp/.hf_cache")
+os.environ.setdefault("HF_HOME", "./cache")
 os.environ["TRANSFORMERS_OFFLINE"] = "1"
 os.environ["HF_HUB_OFFLINE"] = "1"
 
@@ -27,20 +27,20 @@ import torch
 from PIL import Image
 
 # Use base OpenVLA code via hf package (relative imports require package context)
-sys.path.insert(0, "/root/autodl-tmp/openvla_code")
+sys.path.insert(0, "./openvla_code")
 from hf.configuration_prismatic import OpenVLAConfig
 from hf.modeling_prismatic import OpenVLAForActionPrediction
 from hf.processing_prismatic import PrismaticImageProcessor, PrismaticProcessor
 
 DEVICE = torch.device("cuda:0")
-CHECKPOINT_PATH = os.environ.get("CHECKPOINT_PATH", "/root/autodl-tmp/openvla-oft-libero-object")
-BASE_CHECKPOINT_PATH = os.environ.get("BASE_CHECKPOINT_PATH", "/root/autodl-tmp/openvla-libero-object")
+CHECKPOINT_PATH = os.environ.get("CHECKPOINT_PATH", "./openvla-oft-libero-object")
+BASE_CHECKPOINT_PATH = os.environ.get("BASE_CHECKPOINT_PATH", "./openvla-libero-object")
 LORA_ADAPTER_PATH = os.environ.get("LORA_ADAPTER_PATH", "")
 MODEL_NAME = os.environ.get("MODEL_NAME", "OpenVLA-OFT-7B-libero-object")
-LIBERO_DIR = "/root/autodl-tmp/libero_data/datasets/libero_object"
+LIBERO_DIR = "./libero_data/datasets/libero_object"
 N_VISION_TOKENS = 256
 IMAGES_PER_TASK = 10
-OUTPUT_DIR = "/root/autodl-tmp/importance_margin_vla_compress/artifacts"
+OUTPUT_DIR = "./artifacts"
 
 KEEP_RATIOS = [0.1, 0.2, 0.3, 0.5, 0.7, 0.9, 0.95, 1.0]
 

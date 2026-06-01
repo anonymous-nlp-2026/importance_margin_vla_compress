@@ -7,7 +7,7 @@ Two-pass inference per step:
 
 Usage:
     CUDA_VISIBLE_DEVICES=2 MUJOCO_GL=egl python eval_openvla_acis_prune.py \
-        --model_path /root/autodl-tmp/openvla-libero-object \
+        --model_path ./openvla-libero-object \
         --suite libero_object \
         --keep_ratio 0.5 \
         --num_episodes 50 \

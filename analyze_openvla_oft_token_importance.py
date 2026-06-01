@@ -9,7 +9,7 @@ Usage:
 
 import os
 os.environ["CUDA_VISIBLE_DEVICES"] = "1"
-os.environ["HF_HOME"] = "/root/autodl-tmp/.hf_cache"
+os.environ["HF_HOME"] = "./cache"
 os.environ["HF_HUB_OFFLINE"] = "1"
 os.environ["TRANSFORMERS_OFFLINE"] = "1"
 
@@ -25,11 +25,11 @@ import pyarrow.parquet as pq
 import torch
 from PIL import Image
 
-OFT_MODEL_PATH = "/root/autodl-tmp/openvla-oft-libero-object"
-STD_MODEL_PATH = "/root/autodl-tmp/openvla-libero-object"
+OFT_MODEL_PATH = "./openvla-oft-libero-object"
+STD_MODEL_PATH = "./openvla-libero-object"
 LORA_ADAPTER_PATH = "/tmp/oft_lora_locked"
 
-LIBERO_SNAP = Path("/root/autodl-tmp/.hf_cache/lerobot/hub/"
+LIBERO_SNAP = Path("./cache/lerobot/hub/"
                    "datasets--HuggingFaceVLA--libero/snapshots/"
                    "86958911c0f959db2bbbdb107eb3e17c5f9c798e")
 DATA_DIR = LIBERO_SNAP / "data" / "chunk-000"
@@ -38,7 +38,7 @@ LIBERO_OBJECT_TASKS = range(20, 30)
 FRAMES_PER_TASK = 10
 PROMPT_TEMPLATE = "In: What action should the robot take to {task}?\nOut:"
 KEEP_RATIOS = [0.1, 0.2, 0.3, 0.5, 0.7, 0.9, 0.95, 1.0]
-OUT_DIR = Path("/root/autodl-tmp/importance_margin_vla_compress/artifacts")
+OUT_DIR = Path("./artifacts")
 
 
 def load_libero_frames():

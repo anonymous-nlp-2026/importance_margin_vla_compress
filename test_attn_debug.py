@@ -7,9 +7,9 @@ import torch
 from PIL import Image
 from pathlib import Path
 
-sys.path.insert(0, "/root/autodl-tmp/openvla-oft-official")
+sys.path.insert(0, "./openvla-oft-official")
 
-CKPT = "/root/autodl-tmp/openvla-oft-libero-object"
+CKPT = "./openvla-oft-libero-object"
 DEVICE = "cuda:0"
 ACTION_DIM = 7
 

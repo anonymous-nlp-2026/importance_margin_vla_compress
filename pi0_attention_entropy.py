@@ -10,10 +10,10 @@ weights from the dual-stream forward pass without modifying model code.
 
 import os
 os.environ["CUDA_VISIBLE_DEVICES"] = "2"
-os.environ["HF_HOME"] = "/root/autodl-tmp/.hf_cache"
+os.environ["HF_HOME"] = "./cache"
 
 import sys
-sys.path.insert(0, "/root/autodl-tmp/lerobot/src")
+sys.path.insert(0, "./lerobot/src")
 
 import json
 import io
@@ -30,7 +30,7 @@ from torchvision.transforms.functional import to_tensor
 LIBERO_OBJECT_TASKS = range(20, 30)
 FRAMES_PER_TASK = 10
 TOKENIZER_MAX_LENGTH = 48
-ARTIFACTS_DIR = "/root/autodl-tmp/importance_margin_vla_compress/artifacts"
+ARTIFACTS_DIR = "./artifacts"
 
 layer_attention_store = {}
 
@@ -53,7 +53,7 @@ def load_tokenizer():
     for name in candidates:
         try:
             tok = AutoTokenizer.from_pretrained(
-                name, cache_dir="/root/autodl-tmp/.hf_cache",
+                name, cache_dir="./cache",
             )
             print(f"  Tokenizer loaded from {name}")
             return tok
@@ -73,7 +73,7 @@ def main():
     )
 
     local_ckpt = (
-        "/root/autodl-tmp/.hf_cache/models--lerobot--pi0_libero_base/"
+        "./cache/models--lerobot--pi0_libero_base/"
         "snapshots/1dc27a57cf4b54c6fb138ed80a97da150e812e76"
     )
     policy = PI0Policy.from_pretrained(local_ckpt)
@@ -132,7 +132,7 @@ def main():
     # Load data
     print("\nLoading LIBERO-Object data...")
     snap = Path(
-        "/root/autodl-tmp/.hf_cache/lerobot/hub/"
+        "./cache/lerobot/hub/"
         "datasets--HuggingFaceVLA--libero/snapshots/"
         "86958911c0f959db2bbbdb107eb3e17c5f9c798e"
     )

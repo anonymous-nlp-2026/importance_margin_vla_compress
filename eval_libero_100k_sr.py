@@ -5,11 +5,11 @@ from pathlib import Path
 
 os.environ["CUDA_VISIBLE_DEVICES"] = "1"
 os.environ["MUJOCO_GL"] = "egl"
-os.environ["HF_HOME"] = "/root/autodl-tmp/.hf_cache"
+os.environ["HF_HOME"] = "./cache"
 os.environ["TRANSFORMERS_OFFLINE"] = "1"
 os.environ["HF_HUB_OFFLINE"] = "1"
 
-PROJECT_DIR = Path("/root/autodl-tmp/importance_margin_vla_compress")
+PROJECT_DIR = Path(".")
 sys.path.insert(0, str(PROJECT_DIR))
 
 import json

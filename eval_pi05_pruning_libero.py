@@ -18,7 +18,7 @@ from pathlib import Path
 from collections import deque
 
 os.environ["MUJOCO_GL"] = "egl"
-os.environ["HF_HOME"] = "/root/autodl-tmp/.hf_cache"
+os.environ["HF_HOME"] = "./cache"
 os.environ["HF_TOKEN"] = "YOUR_HF_TOKEN_HERE"
 
 import numpy as np
@@ -41,7 +41,7 @@ SUITE_CONFIG = {
 
 def parse_args():
     p = argparse.ArgumentParser()
-    p.add_argument("--model_path", type=str, default="/root/autodl-tmp/pi05_libero_finetuned")
+    p.add_argument("--model_path", type=str, default="./pi05_libero_finetuned")
     p.add_argument("--suite", type=str, default="libero_object", choices=list(SUITE_CONFIG))
     p.add_argument("--prune_mode", type=str, default="none", choices=["none", "random", "l2norm", "attention", "zero_mask_random", "zero_mask_l2norm"])
     p.add_argument("--keep_ratio", type=float, default=1.0)
@@ -50,7 +50,7 @@ def parse_args():
     p.add_argument("--seed", type=int, default=7)
     p.add_argument("--replan_steps", type=int, default=5)
     p.add_argument("--output_dir", type=str,
-                   default="/root/autodl-tmp/importance_margin_vla_compress/eval_results")
+                   default="./eval_results")
     p.add_argument("--fixed_mask", action="store_true")
     return p.parse_args()
 

@@ -7,7 +7,7 @@ import torch.nn as nn
 from PIL import Image
 from pathlib import Path
 
-CKPT = "/root/autodl-tmp/openvla-oft-libero-object"
+CKPT = "./openvla-oft-libero-object"
 DEVICE = "cuda:0"
 ACTION_DIM = 7
 NUM_ACTIONS_CHUNK = 8
@@ -245,7 +245,7 @@ with torch.inference_mode():
 
 # ── OFFICIAL pipeline ──
 print("\n\n=== OFFICIAL PREDICT_ACTION ===")
-sys.path.insert(0, "/root/autodl-tmp/openvla-oft-official")
+sys.path.insert(0, "./openvla-oft-official")
 try:
     from prismatic.extern.hf.modeling_prismatic import OpenVLAForActionPrediction
     official = OpenVLAForActionPrediction.from_pretrained(

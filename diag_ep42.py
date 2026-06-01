@@ -1,8 +1,8 @@
 import torch, numpy as np, sys
-sys.path.insert(0, '/root/autodl-tmp/importance_margin_vla_compress')
+sys.path.insert(0, '.')
 import os
 os.environ["MUJOCO_GL"] = "egl"
-os.environ["HF_HOME"] = "/root/autodl-tmp/.hf_cache"
+os.environ["HF_HOME"] = "./cache"
 os.environ["WANDB_MODE"] = "offline"
 
 from lerobot.datasets.lerobot_dataset import LeRobotDataset

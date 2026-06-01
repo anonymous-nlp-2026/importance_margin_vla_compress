@@ -19,7 +19,7 @@ from eval_success_rate import obs_to_batch, predict_actions
 def main():
     device = torch.device("cuda:0")
 
-    pretrained_path = "/root/autodl-tmp/.hf_cache/lerobot/smolvla_base"
+    pretrained_path = "./cache/lerobot/smolvla_base"
     print(f"Loading pretrained from {pretrained_path}")
     policy = SmolVLAPolicy.from_pretrained(pretrained_path)
 

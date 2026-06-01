@@ -3,7 +3,7 @@
 # GPU 0 -> baseline, GPU 1 -> IMM anchor (delta=0.3, lambda=0.5)
 set -e
 
-source /root/miniconda3/etc/profile.d/conda.sh && conda activate base
+# activate your conda environment
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 cd "$SCRIPT_DIR"

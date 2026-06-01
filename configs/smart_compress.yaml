@@ -4,7 +4,7 @@
 
 model:
   name: smolvla
-  pretrained: "/root/autodl-tmp/.hf_cache/lerobot/smolvla_base"
+  pretrained: "./cache/lerobot/smolvla_base"
 
 compressor:
   num_queries: 32      # M = 32 compressed tokens (75% compression)

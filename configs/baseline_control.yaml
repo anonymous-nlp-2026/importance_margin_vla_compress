@@ -10,7 +10,7 @@
 
 model:
   name: smolvla
-  pretrained: "/root/autodl-tmp/.hf_cache/lerobot/smolvla_base"
+  pretrained: "./cache/lerobot/smolvla_base"
   init_checkpoint: "checkpoints/libero_full_ft/step_099999/checkpoint.pt"
 
 dataset:

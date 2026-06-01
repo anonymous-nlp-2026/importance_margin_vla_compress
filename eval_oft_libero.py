@@ -17,7 +17,7 @@ Dependencies: transformers, torch, numpy, Pillow, timm, libero
 
 Usage:
     CUDA_VISIBLE_DEVICES=0 MUJOCO_GL=egl python eval_oft_libero.py \
-        --checkpoint /root/autodl-tmp/openvla-oft-libero-object \
+        --checkpoint ./openvla-oft-libero-object \
         --suite libero_object \
         --prune_mode l2norm \
         --keep_ratio 0.5 \

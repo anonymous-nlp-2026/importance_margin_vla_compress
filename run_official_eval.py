@@ -1,14 +1,14 @@
 """Run official OFT eval code on 5 episodes."""
 import os, sys
 os.environ["MUJOCO_GL"] = "egl"
-sys.path.insert(0, "/root/autodl-tmp/openvla-oft-official")
+sys.path.insert(0, "./openvla-oft-official")
 
 from dataclasses import dataclass
 from typing import Optional
 
 @dataclass
 class Config:
-    pretrained_checkpoint: str = "/root/autodl-tmp/openvla-oft-libero-object"
+    pretrained_checkpoint: str = "./openvla-oft-libero-object"
     task_suite_name: str = "libero_object"
     model_family: str = "openvla"
     center_crop: bool = True

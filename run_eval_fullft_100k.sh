@@ -1,8 +1,8 @@
 #!/bin/bash
-source /root/miniconda3/etc/profile.d/conda.sh
+# activate your conda environment
 conda activate base
-cd /root/autodl-tmp/importance_margin_vla_compress
-export HF_HOME=/root/autodl-tmp/.hf_cache
+cd .
+export HF_HOME=./cache
 export HF_HUB_DISABLE_XET=1
 export CUDA_VISIBLE_DEVICES=0
 

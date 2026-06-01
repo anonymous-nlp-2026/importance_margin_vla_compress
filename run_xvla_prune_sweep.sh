@@ -5,14 +5,14 @@ export MUJOCO_GL=egl
 export CUDA_VISIBLE_DEVICES=0
 export TRANSFORMERS_OFFLINE=1
 export HF_HUB_OFFLINE=1
-export HF_HOME=/root/autodl-tmp/.hf_cache
+export HF_HOME=./cache
 
-source /root/miniconda3/etc/profile.d/conda.sh
+# activate your conda environment
 conda activate base
 
-cd /root/autodl-tmp/importance_margin_vla_compress
+cd .
 
-MODEL_PATH="/root/autodl-tmp/X-VLA-Libero"
+MODEL_PATH="./X-VLA-Libero"
 SUITE="libero_object"
 EPISODES=50
 SEED=42

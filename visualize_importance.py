@@ -15,12 +15,12 @@ Importance: L2 norm of projected embeddings (vision_tower -> multi_modal_project
 
 import os
 os.environ["CUDA_VISIBLE_DEVICES"] = "1"
-os.environ["HF_HOME"] = "/root/autodl-tmp/.hf_cache"
+os.environ["HF_HOME"] = "./cache"
 os.environ.setdefault("HF_TOKEN", os.environ.get("HF_TOKEN", ""))
 
 import sys
 import argparse
-sys.path.insert(0, "/root/autodl-tmp/lerobot/src")
+sys.path.insert(0, "./lerobot/src")
 
 import io
 import types
@@ -41,14 +41,14 @@ import pyarrow.parquet as pq
 from PIL import Image
 
 # ── Paths ──
-MODEL_PATH = "/root/autodl-tmp/pi05_libero_finetuned"
+MODEL_PATH = "./pi05_libero_finetuned"
 LIBERO_SNAP = Path(
-    "/root/autodl-tmp/.hf_cache/lerobot/hub/"
+    "./cache/lerobot/hub/"
     "datasets--HuggingFaceVLA--libero/snapshots/"
     "86958911c0f959db2bbbdb107eb3e17c5f9c798e"
 )
 DATA_DIR = LIBERO_SNAP / "data" / "chunk-000"
-OUT_DIR = Path("/root/autodl-tmp/importance_margin_vla_compress/artifacts/figures")
+OUT_DIR = Path("./artifacts/figures")
 
 # ── Architecture ──
 PATCH_SIZE = 14

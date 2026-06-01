@@ -6,7 +6,7 @@ import torch
 from PIL import Image
 from pathlib import Path
 
-CKPT = "/root/autodl-tmp/openvla-oft-libero-object"
+CKPT = "./openvla-oft-libero-object"
 DEVICE = "cuda:0"
 
 print(f"Loading model from {CKPT}...")

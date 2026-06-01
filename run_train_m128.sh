@@ -3,10 +3,10 @@
 # Purpose: verify if SR > baseline comes from cross-attention architecture vs compression ratio
 # DO NOT START — wait for Director approval after M=96/M=16 finish
 
-cd /root/autodl-tmp/importance_margin_vla_compress
-source /root/miniconda3/bin/activate
+cd .
+# activate your conda environment
 
-CUDA_VISIBLE_DEVICES=X HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 WANDB_MODE=offline \
+CUDA_VISIBLE_DEVICES=X HF_HOME=./cache HF_HUB_OFFLINE=1 WANDB_MODE=offline \
 nohup python -u train_smart_compress.py \
   --config configs/smart_compress_m128.yaml \
   --wandb_run smart_compress_m128 \

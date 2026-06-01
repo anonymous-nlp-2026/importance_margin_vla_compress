@@ -30,7 +30,7 @@ from pathlib import Path
 from PIL import Image
 
 os.environ.setdefault("MUJOCO_GL", "egl")
-os.environ.setdefault("HF_HOME", "/root/autodl-tmp/.hf_cache")
+os.environ.setdefault("HF_HOME", "./cache")
 os.environ.setdefault("HF_HUB_OFFLINE", "1")
 os.environ.setdefault("TRANSFORMERS_OFFLINE", "1")
 
@@ -38,7 +38,7 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
-PROJECT_DIR = Path("/root/autodl-tmp/importance_margin_vla_compress")
+PROJECT_DIR = Path(".")
 ARTIFACTS_DIR = PROJECT_DIR / "artifacts"
 sys.path.insert(0, str(PROJECT_DIR))
 
@@ -47,23 +47,23 @@ DEVICE = torch.device("cuda:0")
 MODEL_CONFIGS = [
     {"name": "pi0",     "label": "π0",      "cv": 0.038, "n_tok": 256,
      "connector": "linear proj.",
-     "path": "/root/autodl-tmp/pi0_libero_finetuned"},
+     "path": "./pi0_libero_finetuned"},
     {"name": "pi05",    "label": "π0.5",    "cv": 0.055, "n_tok": 768,
      "connector": "linear proj.",
-     "path": "/root/autodl-tmp/pi05_libero_finetuned"},
+     "path": "./pi05_libero_finetuned"},
     {"name": "xvla",    "label": "X-VLA",   "cv": 0.151, "n_tok": 50,
      "connector": "linear+BART",
-     "path": ["/root/autodl-tmp/models/xvla-libero",
-              "/root/autodl-tmp/X-VLA-Libero"]},
+     "path": ["./models/xvla-libero",
+              "./X-VLA-Libero"]},
     {"name": "openvla", "label": "OpenVLA", "cv": 0.215, "n_tok": 256,
      "connector": "3-layer MLP",
-     "path": "/root/autodl-tmp/openvla-libero-object"},
+     "path": "./openvla-libero-object"},
     {"name": "oft",     "label": "OFT",     "cv": 0.219, "n_tok": 512,
      "connector": "3-layer MLP",
-     "path": "/root/autodl-tmp/openvla-oft-libero-object"},
+     "path": "./openvla-oft-libero-object"},
     {"name": "smolvla", "label": "SmolVLA", "cv": 0.314, "n_tok": 128,
      "connector": "pix-shuffle",
-     "path": "/root/autodl-tmp/.hf_cache/lerobot/smolvla_base"},
+     "path": "./cache/lerobot/smolvla_base"},
 ]
 
 
@@ -83,7 +83,7 @@ def resolve_path(path_spec):
 def load_libero_frame():
     import pyarrow.parquet as pq
     snap = Path(
-        "/root/autodl-tmp/.hf_cache/lerobot/hub/"
+        "./cache/lerobot/hub/"
         "datasets--HuggingFaceVLA--libero/snapshots/"
         "86958911c0f959db2bbbdb107eb3e17c5f9c798e"
     )
@@ -246,17 +246,17 @@ def extract_openvla(frame, model_path):
     """OpenVLA: DinoSigLIP fused dual backbone → 3-layer MLP projector.
     Hook: vla.projector output (called on vision_backbone features).
     Single image → 256 tokens."""
-    openvla_deps = "/root/autodl-tmp/openvla_deps"
+    openvla_deps = "./openvla_deps"
     if Path(openvla_deps).exists():
         sys.path.insert(0, openvla_deps)
 
-    hf_dir = "/root/autodl-tmp/openvla-repo/prismatic/extern/hf"
+    hf_dir = "./openvla-repo/prismatic/extern/hf"
     if not Path(hf_dir).exists():
         raise FileNotFoundError(f"OpenVLA HF code not found at {hf_dir}")
     init_path = os.path.join(hf_dir, "__init__.py")
     if not os.path.exists(init_path):
         open(init_path, "w").close()
-    sys.path.insert(0, "/root/autodl-tmp/openvla-repo/prismatic/extern")
+    sys.path.insert(0, "./openvla-repo/prismatic/extern")
 
     from hf.configuration_prismatic import OpenVLAConfig
     from hf.modeling_prismatic import OpenVLAForActionPrediction

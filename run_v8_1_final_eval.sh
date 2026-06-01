@@ -2,11 +2,11 @@
 set -e
 GPU=${1:-0}
 
-cd /root/autodl-tmp/importance_margin_vla_compress
-source /root/miniconda3/etc/profile.d/conda.sh && conda activate base
+cd .
+# activate your conda environment
 source /etc/network_turbo 2>/dev/null || true
 export PYTHONUNBUFFERED=1
-export HF_HOME=/root/autodl-tmp/.hf_cache
+export HF_HOME=./cache
 export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt
 export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt
 export HF_HUB_DISABLE_XET=1

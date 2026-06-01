@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
-source /root/miniconda3/etc/profile.d/conda.sh && conda activate base
-cd /root/autodl-tmp/importance_margin_vla_compress
+# activate your conda environment
+cd .
 export MUJOCO_GL=egl
 
 SUITE="libero_object"

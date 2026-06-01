@@ -7,11 +7,11 @@ with balanced sampling across all 10 tasks.
 
 import os
 os.environ["CUDA_VISIBLE_DEVICES"] = "1"
-os.environ["HF_HOME"] = "/root/autodl-tmp/.hf_cache"
+os.environ["HF_HOME"] = "./cache"
 os.environ["HF_HUB_OFFLINE"] = "1"
 
 import sys
-sys.path.insert(0, "/root/autodl-tmp/importance_margin_vla_compress")
+sys.path.insert(0, ".")
 
 import json
 import math
@@ -48,7 +48,7 @@ def main():
     # ── Load SmolVLA ────────────────────────────────────────
     from _lerobot_compat import SmolVLAPolicy
     print("Loading SmolVLA model...")
-    policy = SmolVLAPolicy.from_pretrained("/root/autodl-tmp/.hf_cache/lerobot/smolvla_base")
+    policy = SmolVLAPolicy.from_pretrained("./cache/lerobot/smolvla_base")
     policy.eval().to(device)
 
     flow = policy.model
@@ -63,7 +63,7 @@ def main():
     print(f"  attention_mode={vlm.attention_mode}")
 
     # ── Load LIBERO-Object images (task_index 20-29) ────────
-    snap = Path("/root/autodl-tmp/.hf_cache/lerobot/hub/"
+    snap = Path("./cache/lerobot/hub/"
                 "datasets--HuggingFaceVLA--libero/snapshots/"
                 "86958911c0f959db2bbbdb107eb3e17c5f9c798e")
     data_dir = snap / "data" / "chunk-000"
@@ -281,7 +281,7 @@ def main():
     results["overall_entropy_ratio"] = round(float(np.mean(all_ent)), 4)
     results["overall_entropy_std"] = round(float(np.std(all_ent)), 4)
 
-    out_path = "/root/autodl-tmp/importance_margin_vla_compress/eval_results/smolvla_attention_entropy_perlayer_fixed.json"
+    out_path = "./eval_results/smolvla_attention_entropy_perlayer_fixed.json"
     os.makedirs(os.path.dirname(out_path), exist_ok=True)
     with open(out_path, "w") as f:
         json.dump(results, f, indent=2)

@@ -19,24 +19,24 @@ os.environ["TRANSFORMERS_OFFLINE"] = "1"
 os.environ["HF_HUB_OFFLINE"] = "1"
 
 # Use transformers 4.40.1 for OpenVLA compat
-sys.path.insert(0, "/root/autodl-tmp/openvla_deps")
+sys.path.insert(0, "./openvla_deps")
 
 import numpy as np
 import torch
 from PIL import Image
 
 # Import OpenVLA model code
-hf_dir = "/root/autodl-tmp/openvla-repo/prismatic/extern/hf"
+hf_dir = "./openvla-repo/prismatic/extern/hf"
 init_path = os.path.join(hf_dir, "__init__.py")
 if not os.path.exists(init_path):
     open(init_path, "w").close()
-sys.path.insert(0, "/root/autodl-tmp/openvla-repo/prismatic/extern")
+sys.path.insert(0, "./openvla-repo/prismatic/extern")
 from hf.configuration_prismatic import OpenVLAConfig
 from hf.modeling_prismatic import OpenVLAForActionPrediction
 from hf.processing_prismatic import PrismaticImageProcessor, PrismaticProcessor
 
 DEVICE = torch.device("cuda:0")
-CHECKPOINT_PATH = "/root/autodl-tmp/openvla-libero-object"
+CHECKPOINT_PATH = "./openvla-libero-object"
 UNNORM_KEY = "libero_object"
 
 SUITE_MAX_STEPS = {
@@ -60,7 +60,7 @@ def parse_args():
     p.add_argument("--output", type=str, default=None)
     p.add_argument("--center_crop", action="store_true", default=True)
     p.add_argument("--num_steps_wait", type=int, default=10)
-    p.add_argument("--model_path", type=str, default="/root/autodl-tmp/openvla-libero-object")
+    p.add_argument("--model_path", type=str, default="./openvla-libero-object")
     p.add_argument("--unnorm_key", type=str, default="libero_object")
     return p.parse_args()
 
@@ -417,7 +417,7 @@ def main():
     if args.output:
         out_path = args.output
     else:
-        out_dir = "/root/autodl-tmp/importance_margin_vla_compress/eval_results"
+        out_dir = "./eval_results"
         os.makedirs(out_dir, exist_ok=True)
         suite_short = args.suite.replace('libero_', '')
         if args.mode == "baseline":
