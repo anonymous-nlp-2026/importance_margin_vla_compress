@@ -1,4 +1,4 @@
-# Supplementary Code
+# Why Token Pruning Crashes Some Robot Policies but Not Others: Vision Connectors and VLA Token Compressibility
 
 **Why Token Pruning Crashes Some Robot Policies but Not Others: Vision Connectors and VLA Token Compressibility**
 
